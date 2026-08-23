@@ -9,12 +9,37 @@ import store from './../renderer/store/index.js'
 
 // import './crashReporter'
 
-// prepatch 
+// prepatch
 console.log("Plattform Check " + process.platform)
 if (process.platform === "linux") {
   console.log("Apply --no-sandbox to commandline to fix Linux (debian) graphical issues")
   console.log("More Info: https://github.com/Gkiokan/ps4-remote-pkg-sender/issues/76#issuecomment-2127757683")
   app.commandLine.appendSwitch("no-sandbox");
+}
+
+// Prevent a second app process from starting. Without this, closing the
+// window (which only hides it, see createMainWindow below) followed by
+// relaunching the app spawns a second process that tries to bind the same
+// HTTP server port and replays stale queue/task state at the PS4, which can
+// crash the PS4-side homebrew mid-transfer. Instead, focus the existing
+// instance and let the new process exit immediately.
+const gotSingleInstanceLock = app.requestSingleInstanceLock()
+
+if (!gotSingleInstanceLock) {
+  console.log("Another instance is already running. Quitting this one.")
+  app.quit()
+}
+else {
+  app.on('second-instance', () => {
+    console.log("Second instance detected. Focusing the existing window instead.")
+    if (windows.main) {
+      if (windows.main.isMinimized())
+        windows.main.restore()
+
+      windows.main.show()
+      windows.main.focus()
+    }
+  })
 }
 
 // set vars
@@ -168,13 +193,33 @@ app.on('window-all-closed', () => {
 })
 
 // fix quit issue when open windows are left
+//
+// Previously this gave the server window a flat 500ms to shut down before
+// force-closing every window regardless of outcome. If the PS4 still had an
+// open connection to the embedded HTTP server (e.g. mid-transfer), the
+// process was killed out from under that socket instead of closing it
+// cleanly - the PS4 side sees the connection vanish instead of getting a
+// proper close. Now we actually wait for the server window to confirm the
+// HTTP server finished closing (see server-stopped in app/Server.vue),
+// with a longer safety-net timeout in case a connection never lets go.
+let quitConfirmed = false
+
 app.on('before-quit', (event) => {
+  if (quitConfirmed)
+    return
+
+  event.preventDefault()
+
   console.log("Closing applications")
 
-  console.log("Closing Server")
-  windows.server.webContents.send('server', 'stop')
+  let finished = false
+  const finishQuit = () => {
+    if (finished)
+      return
+    finished = true
 
-  setTimeout(() => {
+    quitConfirmed = true
+
     Object.values(windows).map( (win) => {
       if(!win){
           return console.log("No win object")
@@ -183,15 +228,39 @@ app.on('before-quit', (event) => {
       win.removeAllListeners('close')
       win.close()
     })
-  }, 500)
 
-  console.log("Application closed.")
+    console.log("Application closed.")
+    app.quit()
+  }
+
+  if (windows.server) {
+    console.log("Closing Server")
+    ipcMain.once('server-stopped', finishQuit)
+    windows.server.webContents.send('server', 'stop')
+
+    // Safety net: Node's http.Server#close() callback only fires once every
+    // open connection ends, which may never happen on its own. Give it a
+    // generous grace period, then force the app closed either way.
+    setTimeout(finishQuit, 5000)
+  }
+  else {
+    finishQuit()
+  }
 })
 
 //  activate hook
 app.on('activate', () => {
   windows.main.show()
 })
+
+// The queue module (task/status/task_id per file) is persisted to disk by
+// vuex-electron so it survives app restarts. That's fine for the file list,
+// but a leftover 'installing' task_id from a previous session no longer
+// means anything to the PS4 (its RPI homebrew doesn't remember it either),
+// and letting the UI act on it (resume/poll/isInstalled) risks sending
+// requests the PS4 side doesn't expect. Every fresh app start should begin
+// with a clean queue, matching a install-from-scratch flow.
+store.dispatch('queue/resetAll')
 
 // create main BrowserWindow when electron is ready
 app.on('ready', () => {

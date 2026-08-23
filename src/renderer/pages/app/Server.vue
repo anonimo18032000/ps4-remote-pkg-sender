@@ -184,17 +184,25 @@ export default {
             })
         },
 
+
         async stopServer(){
             let log = 'Closing Server'
             this.$store.dispatch('server/addLog', log)
 
             if(this.host.server)
-              await this.host.server.close(() => {
+              await this.host.server.close(() => {
                   this.$store.dispatch('server/addLog', 'Server closed')
                   this.$store.dispatch('server/setStatus', 'stopped')
+                  // Let the main process know the HTTP server (and any PS4
+                  // connections still attached to it) has actually finished
+                  // closing, so it can wait for this instead of force-killing
+                  // the window after a fixed timeout. See main/index.js before-quit.
+                  ipcRenderer.send('server-stopped')
               })
-            else
+            else {
               this.$store.dispatch('server/addLog', "Server can not be closed. Server Object does't exist")
+              ipcRenderer.send('server-stopped')
+            }
         },
 
         addCORSHandler(){
