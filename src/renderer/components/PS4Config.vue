@@ -145,27 +145,48 @@ export default {
                     .then( () => {
                         this.testingConnection = false
                         this.$root.log("PS5 está acessível", null)
-                        this.$message({ message: "PS5 está acessível", type: 'success' })
+                        this.$message({ message: "PS5 está acessível", type: 'success' })
                     })
                     .catch( e => {
                         this.testingConnection = false
                         console.log(e)
                         this.$root.log("Verificar Playstation: PS5 não está acessível", e)
-                        this.$message({ message: "PS5 não está acessível", type: 'error' })                    
+                        this.$message({ message: "PS5 não está acessível", type: 'error' })
                     })
-            
+
+            // GoldHEN's embedded RPI speaks a raw TCP protocol, not the flatZ
+            // RPI HTTP API that $ps4.checkPS4() targets (GET /api/is_exists).
+            // Hitting that HTTP endpoint against GoldHEN's TCP listener always
+            // fails, even when GoldHEN is reachable and working fine - so this
+            // needs its own check using the same raw TCP connect GoldHEN's
+            // install request uses.
+            if( this.ps4.app == 'goldhen' )
+                return await this.$ps4_goldhen.checkPS4()
+                    .then( () => {
+                        this.testingConnection = false
+                        this.$root.log("PS4 (GoldHEN) está acessível", null)
+                        this.$message({ message: "PS4 (GoldHEN) está acessível", type: 'success' })
+                    })
+                    .catch( e => {
+                        this.testingConnection = false
+                        console.log(e)
+                        this.$root.log("Verificar Playstation: PS4 (GoldHEN) não está acessível", e)
+                        this.$message({ message: "PS4 (GoldHEN) não está acessível", type: 'error' })
+                    })
+
             this.$ps4.checkPS4()
                 .then( (res) => {
                     this.testingConnection = false
                     this.$root.log("PS4 está acessível", { status: res.status, statusText: res.statusText })
-                    this.$message({ message: "Verificação do Playstation. PS4 está acessível", type: 'success' })
+                    this.$message({ message: "Verificação do Playstation. PS4 está acessível", type: 'success' })
                 })
                 .catch( e => {
                     this.testingConnection = false
                     this.$root.log("Verificar Playstation: PS4 não está acessível", e)
-                    this.$message({ message: "PS4 não está acessível.", type: 'error' })
+                    this.$message({ message: "PS4 não está acessível.", type: 'error' })
                 })
         },
+
 
     }
 }

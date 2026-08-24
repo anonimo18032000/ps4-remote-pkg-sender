@@ -265,6 +265,9 @@ export default {
             if( this.isPS5 )
                 return this.$message({ message: "O recurso 'Verificar se está instalado' ainda não foi implementado para o PS5", type: "info" })                
 
+            if( this.getPS4TargetApp == 'goldhen' )
+                return this.$message({ message: "O recurso 'Verificar se está instalado' não é suportado no modo GoldHEN", type: "info" })
+
             this.$ps4.isInstalled(file)
                     .then( ({ data }) => {
                         if(data.exists == true)
@@ -549,6 +552,11 @@ export default {
         find(file){
             if( this.isPS5 ){
                 this.$message({ message: "'Localizar arquivo' ainda não foi implementado para o PS5", type: "info" })
+                return
+            }
+
+            if( this.getPS4TargetApp == 'goldhen' ){
+                this.$message({ message: "'Localizar arquivo' não é suportado no modo GoldHEN", type: "info" })
                 return
             }
 
