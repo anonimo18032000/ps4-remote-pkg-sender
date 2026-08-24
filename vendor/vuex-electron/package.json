@@ -1,0 +1,13 @@
+{
+  "name": "vuex-electron",
+  "version": "1.0.3",
+  "description": "Vuex Electron (vendored prebuilt dist, see LICENSE)",
+  "main": "./dist/index.js",
+  "homepage": "https://github.com/vue-electron/vuex-electron",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "deepmerge": "^2.1.1",
+    "electron-store": "^2.0.0"
+  }
+}

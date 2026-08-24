@@ -2,3 +2,8 @@ node_modules
 dist
 release
 .idea
+
+# vuex-electron's git dependency install pulls in devDependencies we don't
+# need (see vendor/vuex-electron), so its prebuilt dist/ is vendored and
+# tracked here despite the blanket "dist" rule above.
+!vendor/vuex-electron/dist

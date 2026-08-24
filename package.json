@@ -30,14 +30,14 @@
     "element-ui": "^2.15.6",
     "json5": "^2.2.0",
     "lodash": "^4.17.21",
-    "node-sass": "4.14.1",
+    "sass": "^1.32.13",
     "sass-loader": "10.1.1",
     "vue": "^2.6.14",
     "vue-devtools": "^5.1.4",
     "vue-i18n": "^8.26.7",
     "vue-router": "^3.4.5",
     "vuex": "^3.5.1",
-    "vuex-electron": "git+https://github.com/michaeljpeake/vuex-electron.git",
+    "vuex-electron": "file:vendor/vuex-electron",
     "vuex-pathify": "^1.4.1",
     "vuex-router-sync": "^5.0.0",
     "webpack": "~4.42.1"
@@ -135,5 +135,13 @@
       "repo": "ps4-remote-pkg-sender",
       "vPrefixedTagName": true
     }
+  },
+  "allowScripts": {
+    "electron@8.5.5": true,
+    "core-js@2.6.12": true,
+    "@fortawesome/fontawesome-free@5.15.4": true,
+    "@parcel/watcher@2.6.0": true,
+    "bufferutil@4.1.0": true,
+    "utf-8-validate@5.0.10": true
   }
 }
