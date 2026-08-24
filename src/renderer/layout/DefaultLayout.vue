@@ -4,36 +4,36 @@
           <TitleBar />
 
           <el-menu :default-active="'home'" :router="true" mode="horizontal" ref="menu" @select="handleSelect">
-              <el-menu-item index="home" ref="home">Processing Center</el-menu-item>
+              <el-menu-item index="home" ref="home">Central de Processamento</el-menu-item>
 
-              <el-menu-item index="server" ref="server">Server</el-menu-item>
+              <el-menu-item index="server" ref="server">Servidor</el-menu-item>
 
               <el-menu-item index="hb-store" ref="server" v-if="config.useHB">HB-Store</el-menu-item>
 
-              <el-menu-item index="config">Config</el-menu-item>
+              <el-menu-item index="config">Conexão</el-menu-item>
 
               <el-submenu index="miscs">
-                  <template slot="title">Miscs</template>
+                  <template slot="title">Outros</template>
 
                   <el-menu-item index="downloads">Downloads</el-menu-item>
                   <el-menu-item index="changelog">Changelog</el-menu-item>
 
                   <div style="background: #ddd; height: 1px; margin: 5px 0px" />
 
-                  <el-menu-item @click="$root.open(links.troubleshoot)">Troubleshooting Guide</el-menu-item>
+                  <el-menu-item @click="$root.open(links.troubleshoot)">Guia de Solução de Problemas</el-menu-item>
 
                   <div style="background: #ddd; height: 1px; margin: 5px 0px" />
 
-                  <el-menu-item @click="$root.open(links.github_repo)">GitHub Repo</el-menu-item>
-                  <el-menu-item @click="$root.open(links.report_issue)">Report a Issue</el-menu-item>
+                  <el-menu-item @click="$root.open(links.github_repo)">Repositório no GitHub</el-menu-item>
+                  <el-menu-item @click="$root.open(links.report_issue)">Reportar um Problema</el-menu-item>
               </el-submenu>
 
-              <el-menu-item index="settings">Settings</el-menu-item>
+              <el-menu-item index="settings">Preferências</el-menu-item>
 
               <div class='top_right_header'>
-                  <el-button size="mini" icon="el-icon-user" round @click="move({ name: 'user' })"> Support for more upcoming Features </el-button>
+                  <el-button size="mini" icon="el-icon-user" round @click="move({ name: 'user' })"> Apoie o desenvolvimento de novos recursos </el-button>
 
-                  <el-badge :is-dot="true" value="new" :hidden="!newVersionAvailable" class="sync_icon">
+                  <el-badge :is-dot="true" value="novo" :hidden="!newVersionAvailable" class="sync_icon">
                       <div class="" @click="checkUpdate">
                           <i class="el-icon-refresh" />
                       </div>
@@ -42,9 +42,9 @@
                   <el-dropdown class="window_dropdown" @command="handleViewCallback">
                     <i class="el-icon-files" />
                     <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="server"> Open Local Server </el-dropdown-item>
-                      <el-dropdown-item command="ps4"> Open Playstation API Logs </el-dropdown-item>
-                      <el-dropdown-item command="info"> Info </el-dropdown-item>
+                      <el-dropdown-item command="server"> Abrir Servidor Local </el-dropdown-item>
+                      <el-dropdown-item command="ps4"> Abrir Logs da API do Playstation </el-dropdown-item>
+                      <el-dropdown-item command="info"> Informações </el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
 
@@ -65,7 +65,7 @@
 
           <div style="margin-top: 100px; display:block;">
               <transition name="el-zoom-in-bottom">
-                <el-button round icon="el-icon-arrow-up" class="scrollToTop" @click="scrollToTop" v-show="scrollOffset < scrollPosition"> Back to Top </el-button>
+                <el-button round icon="el-icon-arrow-up" class="scrollToTop" @click="scrollToTop" v-show="scrollOffset < scrollPosition"> Voltar ao Topo </el-button>
               </transition>
           </div>
 
@@ -141,9 +141,9 @@ export default {
       },
 
       closeApplicationRequest(){
-          this.$confirm('Do you really want to close the Application? \nThis stops the server and all child processes.', 'Warning', {
+          this.$confirm('Deseja realmente fechar o aplicativo? \nIsso vai parar o servidor e todos os processos filhos.', 'Aviso', {
             confirmButtonText: 'OK',
-            cancelButtonText: 'Cancel',
+            cancelButtonText: 'Cancelar',
             type: 'warning',
             center: true
           }).then(() => {
@@ -227,7 +227,7 @@ export default {
         if( files.length == 0 ){
             this.showDragAndDropOverlay = false    
             this.draggedFiles = []
-            this.$root.sendMain("No PKG Files found in the Drag and Drop")
+            this.$root.sendMain("Nenhum arquivo PKG encontrado no arrastar e soltar")
             return    
         }
         

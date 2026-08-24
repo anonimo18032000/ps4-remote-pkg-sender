@@ -1,56 +1,56 @@
 <template>
 <div id='server_config'>
 
-  <el-divider content-position="left">Application Settings</el-divider>
+  <el-divider content-position="left">Configurações do Aplicativo</el-divider>
   <div class="q-pl-md">
   <el-form :inline="true" label-width="150px" size="mini" label-position="left" @submit.native.prevent>
       <el-row>
         <el-col :span="8">
-            <el-form-item label="Language">
-              <el-select v-model="config.lang" placeholder="Language" default-first-option>
+            <el-form-item label="Idioma">
+              <el-select v-model="config.lang" placeholder="Idioma" default-first-option>
                   <el-option :label="lang.value" :value="lang.key" :disabled="lang.disabled" v-for="lang in languages" :key="lang.key" />
               </el-select>
             </el-form-item>
         </el-col>
         <el-col :span="16">
             <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-              *Preparation only. If anyone want to contribute, just open a new Issue with [feature/language].
+              *Apenas em preparação. Se alguém quiser contribuir, basta abrir uma nova Issue com [feature/language].
             </p>
         </el-col>
       </el-row>
 
       <el-row>
         <el-col :span="8">
-            <el-form-item label="Style">
-              <el-select v-model="config.style" placeholder="Style" default-first-option>
-                  <el-option label="Light Mode" value="light" />
-                  <el-option label="Dark Mode" value="dark" />
-                  <el-option label="Pure Black" value="pureblack" />
+            <el-form-item label="Estilo">
+              <el-select v-model="config.style" placeholder="Estilo" default-first-option>
+                  <el-option label="Modo Claro" value="light" />
+                  <el-option label="Modo Escuro" value="dark" />
+                  <el-option label="Preto Puro" value="pureblack" />
               </el-select>
             </el-form-item>
         </el-col>
         <el-col :span="16">
             <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-              Want to have a specific coloring Schema? Create a new Issue with [feature/style]
+              Quer um esquema de cores específico? Crie uma nova Issue com [feature/style]
             </p>
         </el-col>
       </el-row>
 
       <el-row>
         <el-col :span="8">
-            <el-form-item label="Style">
-              <el-select v-model="config.titleBar" placeholder="Title Bar" default-first-option>
-                  <el-option label="System Default" value="default" />
+            <el-form-item label="Estilo">
+              <el-select v-model="config.titleBar" placeholder="Barra de Título" default-first-option>
+                  <el-option label="Padrão do Sistema" value="default" />
                   <el-option label="Mac" value="mac" />
                   <el-option label="Mac chromatic" value="mac-chromatic" />
                   <el-option label="Windows / Linux" value="win" />
-                  <el-option label="None" value="none" />
+                  <el-option label="Nenhum" value="none" />
               </el-select>
             </el-form-item>
         </el-col>
         <el-col :span="16">
             <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-              Set TitleBar Appereance
+              Define a aparência da Barra de Título
             </p>
         </el-col>
       </el-row>
@@ -63,31 +63,31 @@
     Features
     ***************************
   -->
-  <el-divider content-position="left">Feature List</el-divider>
+  <el-divider content-position="left">Lista de Recursos</el-divider>
   <div class="q-pl-md">
   <el-form :inline="true" label-width="150px" size="mini" label-position="left" @submit.native.prevent>
       <el-row>
         <el-col :span="8">
-            <el-form-item label="Notifications">
-                <el-checkbox v-model="config.enableSystemNotifications"> Enable System Notifications </el-checkbox>
+            <el-form-item label="Notificações">
+                <el-checkbox v-model="config.enableSystemNotifications"> Ativar Notificações do Sistema </el-checkbox>
             </el-form-item>
         </el-col>
         <el-col :span="16">
             <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-              Sends System Notifications when Installation starts and finishes
+              Envia Notificações do Sistema quando uma instalação começa e termina
             </p>
         </el-col>
       </el-row>
 
       <el-row>
         <el-col :span="8">
-            <el-form-item label="External Links">
-                <el-checkbox v-model="config.enableExternalLinks"> Enable adding external Links </el-checkbox>
+            <el-form-item label="Links Externos">
+                <el-checkbox v-model="config.enableExternalLinks"> Ativar adição de Links externos </el-checkbox>
             </el-form-item>
         </el-col>
         <el-col :span="16">
             <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-              Add PKG's to your Processing Center from a external URL (experimental)
+              Adicione PKGs à sua Central de Processamento a partir de uma URL externa (experimental)
             </p>
         </el-col>
       </el-row>
@@ -95,20 +95,20 @@
       <el-row>
           <el-col :span="8">
               <el-form-item label="HB-Store">
-                  <el-checkbox v-model="config.useHB"> Enable HB-Store Tab</el-checkbox>
+                  <el-checkbox v-model="config.useHB"> Ativar aba HB-Store</el-checkbox>
               </el-form-item>
           </el-col>
           <el-col :span="16">
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px">
-                Access to the official HB-Store from pkg-zone.com directly
+                Acesso direto à HB-Store oficial do pkg-zone.com
               </p>
           </el-col>
       </el-row>
 
       <el-row v-if="config.useHB">
           <el-col :span="8">
-              <el-form-item label="HB-Store Mode">
-                  <el-select v-model="config.useHBMode" placeholder="Mode" default-first-option>
+              <el-form-item label="Modo do HB-Store">
+                  <el-select v-model="config.useHBMode" placeholder="Modo" default-first-option>
                       <el-option :label="mode.value" :value="mode.key" :disabled="mode.disabled" v-for="mode in HBModes" :key="mode.key" />
                   </el-select>
               </el-form-item>
@@ -116,23 +116,23 @@
 
           <el-col :span="16">
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px" v-if="config.useHBMode == 'legacy'">
-                  <b>Legacy Mode</b> is for the current working HB-Store API <br>
+                  <b>Modo Legado</b> é para a API atual do HB-Store <br>
               </p>
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px" v-if="config.useHBMode == 'refactored'">
-                  <b>Refactored Mode</b> allows you to connect to the new HB-Store API <br>
+                  <b>Modo Refatorado</b> permite conectar à nova API do HB-Store <br>
               </p>
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px" v-if="config.useHBMode == 'pkg-zone'">
-                  <b>PKG-Zone</b> connects to the official HB-Store API from pkg-zone.com <br>
+                  <b>PKG-Zone</b> conecta à API oficial do HB-Store do pkg-zone.com <br>
               </p>              
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px" v-if="config.useHBMode == 'custom'">
-                  <b>Custom Mode</b> allows you to connect to your own HB-Store CDN Server <br>
+                  <b>Modo Personalizado</b> permite conectar ao seu próprio Servidor CDN do HB-Store <br>
               </p>
           </el-col>
       </el-row>
 
       <el-row v-if="config.useHB && config.useHBMode">
           <el-col :span="8">
-              <el-form-item label="HB-Store CDN" class="full-width full-width-150">
+              <el-form-item label="CDN do HB-Store" class="full-width full-width-150">
                   <el-input v-model="config.useHBRoot" style="width: 100%;" v-if="config.useHBMode != 'custom'" :disabled="config.useHBMode == 'pkg-zone'"> </el-input>
                   <el-input v-model="config.useHBCustomRoot" style="width: 100%;" v-if="config.useHBMode == 'custom'"> </el-input>
               </el-form-item>
@@ -140,7 +140,7 @@
 
           <el-col :span="16">
               <p style="font-style: italic; font-size: 13px; color: #888; padding-top: 5px; padding-left: 30px;">
-                  Must end with slash (e.g. domain.com<b>/</b>)
+                  Deve terminar com barra (ex.: dominio.com<b>/</b>)
               </p>
           </el-col>
       </el-row>
@@ -148,8 +148,8 @@
       <div style="height: 30px" />
 
       <div>
-          <el-form-item label="Show Configuration Object" label-width="300px">
-              <el-checkbox v-model="config.showConfigObject"> Show my full Settings Object </el-checkbox>
+          <el-form-item label="Mostrar Objeto de Configuração" label-width="300px">
+              <el-checkbox v-model="config.showConfigObject"> Mostrar meu Objeto de Configurações completo </el-checkbox>
           </el-form-item>
       </div>
 

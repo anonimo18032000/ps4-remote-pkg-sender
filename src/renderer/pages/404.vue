@@ -5,7 +5,7 @@
 
     <div style='height: 50px' />
 
-    <el-button @click="$router.push({ name: 'home' })"> Restart Application View </el-button>
+    <el-button @click="$router.push({ name: 'home' })"> Reiniciar Visualização do Aplicativo </el-button>
 </div>
 </template>
 

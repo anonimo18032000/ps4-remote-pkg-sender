@@ -9,9 +9,9 @@
 
   <el-divider />
 
-  <el-button size="mini" @click="save" v-if="false">Save Configuration </el-button>
+  <el-button size="mini" @click="save" v-if="false">Salvar Configuração </el-button>
 
-  <el-button size="mini" @click="reset">Reset Configuration</el-button>
+  <el-button size="mini" @click="reset">Redefinir Configuração</el-button>
 
 </div>
 </template>
@@ -35,10 +35,10 @@ export default {
         },
 
         reset(){
-          this.$confirm('This will set all config values to their initial values. Server will be stopped.', 'Reset Configuration',
+          this.$confirm('Isso vai definir todos os valores de configuração para os valores iniciais. O servidor será parado.', 'Redefinir Configuração',
                 {
                   confirmButtonText: 'OK',
-                  cancelButtonText: 'Cancel',
+                  cancelButtonText: 'Cancelar',
                   type: 'warning',
                   center: true,
                 })
@@ -48,7 +48,7 @@ export default {
                     this.$root.sendServer('stop')
                     this.$message({
                       type: 'success',
-                      message: 'Configuration has been resetted'
+                      message: 'A configuração foi redefinida'
                     });
                 })
                 .catch(() => {

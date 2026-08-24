@@ -1,6 +1,6 @@
 <template>
 <div>
-    Type: {{ type }} | {{ files.length }} Items
+    Tipo: {{ type }} | {{ files.length }} Itens
     <div style="white-space: pre" v-html="$helper.prettyPrint(files)">{{ files }}</div>
 </div>
 </template>
@@ -30,7 +30,7 @@ export default {
             return this.draggedServingFiles
 
           return {
-            info: "No Type selected for Files Component."
+            info: "Nenhum tipo selecionado para o Componente de Arquivos."
           }
       }
   }

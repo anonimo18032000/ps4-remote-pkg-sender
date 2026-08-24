@@ -1,8 +1,8 @@
 <template>
-<el-dialog title="Add file by URL" :visible.sync="show">
+<el-dialog title="Adicionar arquivo por URL" :visible.sync="show">
 
     <el-form :inline="true" label-width="150px" label-position="left">
-        <el-form-item label="Name">
+        <el-form-item label="Nome">
           <el-input size="mini" v-model="form.name" autocomplete="off"></el-input>
         </el-form-item>
 
@@ -14,10 +14,10 @@
           <el-input size="mini" v-model="form.url" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="Type">
-          <el-select size="mini" v-model="form.region" placeholder="Type">
-            <el-option label="Game" value="game"></el-option>
-            <el-option label="Update" value="update"></el-option>
+        <el-form-item label="Tipo">
+          <el-select size="mini" v-model="form.region" placeholder="Tipo">
+            <el-option label="Jogo" value="game"></el-option>
+            <el-option label="Atualização" value="update"></el-option>
             <el-option label="Patch" value="patch"></el-option>
             <el-option label="DLC" value="dlc"></el-option>
             <el-option label="Backport" value="bp"></el-option>
@@ -29,8 +29,8 @@
     </el-form>
 
     <span slot="footer" class="dialog-footer">
-      <el-button size="mini" @click="hide">Cancel</el-button>
-      <el-button size="mini" type="primary" @click="add">Add</el-button>
+      <el-button size="mini" @click="hide">Cancelar</el-button>
+      <el-button size="mini" type="primary" @click="add">Adicionar</el-button>
     </span>
 
 </el-dialog>
@@ -68,7 +68,7 @@ export default {
                   file.status = 'in queue'
 
                 this.$message({
-                    message: file.name + ' is already in Queue',
+                    message: file.name + ' já está na Fila',
                     type: 'warning'
                 })
             }

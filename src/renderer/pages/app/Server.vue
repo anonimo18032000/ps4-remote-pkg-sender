@@ -1,18 +1,18 @@
 <template>
 <div>
-    <h2>Server Application </h2>
+    <h2>Aplicativo do Servidor</h2>
 
     <el-tabs v-model="tab">
       <el-tab-pane label="Log" name="logs">
           <Logs />
       </el-tab-pane>
-      <el-tab-pane label="Serving Files" name="serverFiles">
+      <el-tab-pane label="Arquivos Servidos" name="serverFiles">
           <Files type="server" />
       </el-tab-pane>
-      <el-tab-pane label="Dragged Files" name="draggedFiles">
+      <el-tab-pane label="Arquivos Arrastados" name="draggedFiles">
           <Files type="dragged" />
       </el-tab-pane>      
-      <el-tab-pane label="Routes" name="routes">
+      <el-tab-pane label="Rotas" name="routes">
           <Routes />
       </el-tab-pane>
       <el-tab-pane label="Debug" name="debug">

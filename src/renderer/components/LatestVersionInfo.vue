@@ -1,23 +1,23 @@
 <template>
-<el-dialog title="Latest Version Info" :visible.sync="show">
+<el-dialog title="Informações da Última Versão" :visible.sync="show">
 
-    You are currently on Version <b>{{ current }}</b> <br>
-    Latest Release Version is <b>{{ version }}</b> <br>
+    Você está usando a Versão <b>{{ current }}</b> <br>
+    A versão mais recente é <b>{{ version }}</b> <br>
     <br>
 
     <el-tag type="info" v-if="compare >= 0"> <i class="el-icon-check mr-md" />
-        You are already on the latest version
+        Você já está na versão mais recente
     </el-tag>
     <el-tag type="success" class="cursor-pointer" v-if="compare == -1" @click="goToLatestRelease"> <i class="el-icon-download mr-md" />
-        New Version is available for you. Checkout on GitHub Releases.
+        Uma nova versão está disponível. Confira nos GitHub Releases.
     </el-tag>
 
     <div v-if="compare == -1">
         <table class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition" style="margin-top: 20px;">
             <thead>
               <tr>
-                  <td class="el-table__cell">Name</td>
-                  <td class="el-table__cell text-right">Size</td>
+                  <td class="el-table__cell">Nome</td>
+                  <td class="el-table__cell text-right">Tamanho</td>
                   <td class="el-table__cell text-center" style="width: 50px">DL</td>
               </tr>
             </thead>

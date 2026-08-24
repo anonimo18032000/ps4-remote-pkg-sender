@@ -9,10 +9,10 @@
     </div>
 
     <div class="header text-center">
-        <el-button round @click="close"> Close Downloading Window <i class="el-icon-close" /> </el-button>
+        <el-button round @click="close"> Fechar Janela de Download <i class="el-icon-close" /> </el-button>
 
         <div class="url" style="text-align: left; margin-top: 30px;">
-          <div style="margin-bottom: 10px; display:block; font-weight:bold;">Downloading </div>
+          <div style="margin-bottom: 10px; display:block; font-weight:bold;">Baixando </div>
           <div v-if="true">{{ url }}</div>
         </div>
     </div>
@@ -39,7 +39,7 @@ export default {
           if(this.$route.query.q)
             this.url = this.$route.query.q
           else {
-            alert("No Query parameter given.")
+            alert("Nenhum parâmetro de consulta informado.")
             this.close()
           }
       },

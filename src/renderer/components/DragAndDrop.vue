@@ -2,18 +2,18 @@
 <div class="main_drag_and_drop_overlay">
 
     <div class="close">
-        <el-button size="mini" icon="el-icon-close" @click="$emit('close')"> Close </el-button>
+        <el-button size="mini" icon="el-icon-close" @click="$emit('close')"> Fechar </el-button>
     </div>
 
     <div class="inner">
         <div class="big mb-2">  {{ title }} </div>
 
         <div class="space">
-            Files will be added to the <b class="text-success"> Server > Dragged Tab </b>
+            Os arquivos serão adicionados na aba <b class="text-success"> Servidor > Arrastados </b>
 
             <el-row class="space" v-if="isDragged">
-                <el-button type="success active" size="medium" icon="el-icon-document-add" @click="addFiles"> Yes, add all files </el-button>
-                <el-button size="medium" icon="el-icon-close" @click="$emit('close')"> Nope, just cancel </el-button>
+                <el-button type="success active" size="medium" icon="el-icon-document-add" @click="addFiles"> Sim, adicionar todos os arquivos </el-button>
+                <el-button size="medium" icon="el-icon-close" @click="$emit('close')"> Não, cancelar </el-button>
             </el-row>
         </div>
 
@@ -25,9 +25,9 @@
             <table class="table files" v-if="files && files.length">
                 <thead>
                     <tr>
-                        <th class="text-bold text-left"> Name </th>
+                        <th class="text-bold text-left"> Nome </th>
                         <th style="width: 40px" />
-                        <th class="text-bold text-right"> Size </th>
+                        <th class="text-bold text-right"> Tamanho </th>
                         <th style="width: 40px" />
                     </tr>
                 </thead>
@@ -68,9 +68,9 @@ export default {
         },
         title(){
             if( this.isDragged )
-                return "Select Files to add"
+                return "Selecione os arquivos para adicionar"
 
-            return "Drag and Drop files"
+            return "Arraste e solte os arquivos"
         },   
     },
 

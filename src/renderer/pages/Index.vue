@@ -5,92 +5,92 @@
     <el-col :span="20">
         <el-dropdown @command="handleDropdownCommand" style="margin-right: 10px">
         <el-button size="small" icon="el-icon-refresh-left" >
-            Reset Options <i class="el-icon-arrow-down el-icon--right"></i>
+            Redefinir <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="el-icon-refresh-left" command="resetAll">Reset Queue, Tasks and Installed</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-refresh-left" command="resetInstalled">Reset Installed</el-dropdown-item>
-            <el-dropdown-item icon="el-icon-refresh-left" command="clearFinishedFiles">Remove finished files from Queue</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-refresh-left" command="resetAll">Redefinir Fila, Tarefas e Instalados</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-refresh-left" command="resetInstalled">Redefinir Instalados</el-dropdown-item>
+            <el-dropdown-item icon="el-icon-refresh-left" command="clearFinishedFiles">Remover arquivos concluídos da Fila</el-dropdown-item>
         </el-dropdown-menu>
         </el-dropdown>
 
         <el-dropdown @command="handleDropdownCommand" style="margin-right: 10px">
         <el-button size="small" icon="el-icon-check" >
-            Check Options <i class="el-icon-arrow-down el-icon--right"></i>
+            Verificar <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item icon="fa fa-server" command="checkHB">Check Local Server</el-dropdown-item>
-            <el-dropdown-item icon="fab fa-playstation" command="checkPS4">Check Playstation</el-dropdown-item>
+            <el-dropdown-item icon="fa fa-server" command="checkHB">Verificar Servidor Local</el-dropdown-item>
+            <el-dropdown-item icon="fab fa-playstation" command="checkPS4">Verificar Playstation</el-dropdown-item>
         </el-dropdown-menu>
         </el-dropdown>
 
-        <el-button size="small" icon="el-icon-link" @click="openAddFileDialog" v-if="app.config.enableExternalLinks"> Add URL </el-button>
+        <el-button size="small" icon="el-icon-link" @click="openAddFileDialog" v-if="app.config.enableExternalLinks"> Adicionar URL </el-button>
 
-        <el-button size="small" icon="el-icon-sync" :type="queueScanner ? 'success active' : ' active'" @click="toggleQueueScanner"> Queue Scanner </el-button>
-        <el-button size="small" icon="fa fa-play" @click="handleQueueScannerNextItem" v-if="queueScanner"> Autostart </el-button>
+        <el-button size="small" icon="el-icon-sync" :type="queueScanner ? 'success active' : ' active'" @click="toggleQueueScanner"> Verificador de Fila </el-button>
+        <el-button size="small" icon="fa fa-play" @click="handleQueueScannerNextItem" v-if="queueScanner"> Início Automático </el-button>
 
-        <el-button size="small" @click="test" v-if="false">Test </el-button>
+        <el-button size="small" @click="test" v-if="false">Teste </el-button>
     </el-col>
     <el-col :span="4">
-        <el-input v-model="search" size="small" placeholder="Search" prefix-icon="fas fa-search" />
+        <el-input v-model="search" size="small" placeholder="Pesquisar" prefix-icon="fas fa-search" />
     </el-col>
 </el-row>
 
 
 <el-table :data="files" v-loading="loading" class="file"
-    element-loading-text="Loading Server files"
+    element-loading-text="Carregando arquivos do servidor"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(255, 255, 255, 0.8)"
     style="width: 100%">
 
     <el-table-column type="expand">
         <template slot-scope="scope">
-            <el-button size="mini" icon="fa fa-search" @click="find(scope.row)"> Find </el-button>
+            <el-button size="mini" icon="fa fa-search" @click="find(scope.row)"> Localizar </el-button>
             <el-button size="mini" icon="fa fa-info" @click="info(scope.row)" :disabled="!scope.row.task"> Info </el-button>
             <el-divider direction="vertical" />
-            <el-button size="mini" icon="fa fa-trash" @click="remove(scope.row)" :disabled="!scope.row.task"> Remove </el-button>
-            <el-button size="mini" icon="fa fa-stop" @click="stop(scope.row)" :disabled="!scope.row.task"> Stop </el-button>
-            <el-button size="mini" icon="fa fa-pause" @click="pause(scope.row)" :disabled="!scope.row.task"> Pause </el-button>
-            <el-button size="mini" icon="fa fa-play" @click="resume(scope.row)" :disabled="!scope.row.task"> Resume </el-button>
-            <el-button size="mini" icon="fa fa-play" @click="start(scope.row)"> Start </el-button>
+            <el-button size="mini" icon="fa fa-trash" @click="remove(scope.row)" :disabled="!scope.row.task"> Remover </el-button>
+            <el-button size="mini" icon="fa fa-stop" @click="stop(scope.row)" :disabled="!scope.row.task"> Parar </el-button>
+            <el-button size="mini" icon="fa fa-pause" @click="pause(scope.row)" :disabled="!scope.row.task"> Pausar </el-button>
+            <el-button size="mini" icon="fa fa-play" @click="resume(scope.row)" :disabled="!scope.row.task"> Retomar </el-button>
+            <el-button size="mini" icon="fa fa-play" @click="start(scope.row)"> Iniciar </el-button>
             <el-divider direction="vertical" />
-            <el-button size="mini" icon="fa fa-eye" @click="toggleFileObject(scope.row)" v-if="false"> File Object </el-button>
-            <el-button size="mini" icon="fa fa-eye" @click="toggleFileLogs(scope.row)" v-if="false"> File Logs </el-button>
+            <el-button size="mini" icon="fa fa-eye" @click="toggleFileObject(scope.row)" v-if="false"> Objeto do Arquivo </el-button>
+            <el-button size="mini" icon="fa fa-eye" @click="toggleFileLogs(scope.row)" v-if="false"> Logs do Arquivo </el-button>
 
             <div style='height: 10px' />
 
-            <el-tag size="small"> Percent: {{ scope.row.percentage }}  </el-tag>
+            <el-tag size="small"> Porcentagem: {{ scope.row.percentage }}  </el-tag>
             <el-tag size="small" :type="$helper.getFileStatus(scope.row.status)"> Status: {{ scope.row.status }} </el-tag>
-            <el-tag size="small"> Type: {{ scope.row.type }} </el-tag>
+            <el-tag size="small"> Tipo: {{ scope.row.type }} </el-tag>
             <el-tag size="small" type="info" v-if="scope.row.cusa"> {{ scope.row.cusa }} </el-tag>
             <el-tag size="small" :type="$helper.getFileSizeType(scope.row.size)"> {{ scope.row.size }} </el-tag>
-            <el-tag size="small" type="info"> Task: {{ scope.row.task ? scope.row.task : '-' }} </el-tag>
+            <el-tag size="small" type="info"> Tarefa: {{ scope.row.task ? scope.row.task : '-' }} </el-tag>
             <el-tag size="small" type="info"> Logs: {{ scope.row.logs.length }} </el-tag>
 
             <el-divider direction="vertical" v-if="false" />
-            <el-tag size="small" type="info" v-if="false"> Show File Object </el-tag>
-            <el-tag size="small" type="info" v-if="false"> Show File Logs </el-tag>
+            <el-tag size="small" type="info" v-if="false"> Mostrar Objeto do Arquivo </el-tag>
+            <el-tag size="small" type="info" v-if="false"> Mostrar Logs do Arquivo </el-tag>
 
             <div style='height: 10px' />
 
-            <el-tag size="small" type="info" style="margin-bottom: 3px"> File Name: {{ scope.row.name }} </el-tag> <br>
-            <el-tag size="small" type="info" style="margin-bottom: 3px"> Patched Name: {{ scope.row.patchedFilename }} </el-tag> <br>
-            <el-tag size="small" type="info" style="margin-bottom: 3px"> Path: {{ scope.row.path }} </el-tag> <br>
-            <el-tag size="small" type="info" style="margin-bottom: 3px"> PKG URL: {{ scope.row.url }} </el-tag> <br>
-            <el-tag size="small" type="info" style="margin-bottom: 3px"> Icon0 URL: {{ scope.row.image }} </el-tag> <br>
+            <el-tag size="small" type="info" style="margin-bottom: 3px"> Nome do Arquivo: {{ scope.row.name }} </el-tag> <br>
+            <el-tag size="small" type="info" style="margin-bottom: 3px"> Nome Modificado: {{ scope.row.patchedFilename }} </el-tag> <br>
+            <el-tag size="small" type="info" style="margin-bottom: 3px"> Caminho: {{ scope.row.path }} </el-tag> <br>
+            <el-tag size="small" type="info" style="margin-bottom: 3px"> URL do PKG: {{ scope.row.url }} </el-tag> <br>
+            <el-tag size="small" type="info" style="margin-bottom: 3px"> URL do Icon0: {{ scope.row.image }} </el-tag> <br>
 
 
             <pre v-if="showDebugInRow">{{ scope.row }}</pre>
         </template>
     </el-table-column>
 
-    <el-table-column label="Cover" width="100" v-if="sfoEnabled">
+    <el-table-column label="Capa" width="100" v-if="sfoEnabled">
         <template slot-scope="scope">
             <div class='image' :style="{ backgroundImage: 'url('+scope.row.image+')' }" />
         </template>
     </el-table-column>        
 
-    <el-table-column prop="name" label="Name">
+    <el-table-column prop="name" label="Nome">
         <template slot-scope="scope">
             {{ scope.row.name }} <small v-if="scope.row.sfo?.readSFOHeader">(v{{ scope.row.sfo.APP_VER}})</small>
             <el-tag size="small" :type="$helper.getAppStoreType(scope.row.sfo.CATEGORY)" style="margin-left: 10px; margin-bottom: 3px;" v-if="scope.row.sfo?.readSFOHeader">{{ scope.row.sfo.CATEGORY }}</el-tag>
@@ -109,11 +109,11 @@
         </template>
     </el-table-column>
 
-    <el-table-column prop="task" label="Task" width="105" v-if="showTask && !isPS5"></el-table-column>
+    <el-table-column prop="task" label="Tarefa" width="105" v-if="showTask && !isPS5"></el-table-column>
     <el-table-column prop="cusa" label="CUSA" width="100" v-if="showCUSA"></el-table-column>
-    <el-table-column prop="cusa" label="Version" width="100" v-if="showVersion"></el-table-column>
+    <el-table-column prop="cusa" label="Versão" width="100" v-if="showVersion"></el-table-column>
 
-    <el-table-column prop="rest" label="Rest" width="150" align="center" v-if="!isPS5">
+    <el-table-column prop="rest" label="Restante" width="150" align="center" v-if="!isPS5">
         <template slot-scope="scope">
             <el-tag size="small" plain v-if="scope.row.rest && scope.row.rest != 0"> {{ $helper.secondsToString(scope.row.rest) }} </el-tag>
         </template>
@@ -125,19 +125,19 @@
         </template>
     </el-table-column>
 
-    <el-table-column prop="size" label="Size" width="120" align="right">
+    <el-table-column prop="size" label="Tamanho" width="120" align="right">
         <template slot-scope="scope">
             <el-tag size="small" plain :type="$helper.getFileSizeType(scope.row.size)">{{ scope.row.size }}</el-tag>
         </template>
     </el-table-column>
 
-    <el-table-column label="Progress" width="100px" v-if="showPercentage && !isPS5">
+    <el-table-column label="Progresso" width="100px" v-if="showPercentage && !isPS5">
         <template slot-scope="scope">
             <el-progress :stroke-width="25" :percentage="scope.row.percentage" :text-inside="true" stroke-linecap="square"></el-progress>
         </template>
     </el-table-column>
 
-    <el-table-column label="Operation" width="150" align="right">
+    <el-table-column label="Ações" width="150" align="right">
         <template slot-scope="scope">
             <el-button circle size="small" icon="fa fa-minus" @click="removeFromQueue(scope.row)" />
 
@@ -225,7 +225,7 @@ export default {
                 this.$message({ message: data.message, type: 'success' })
             })
             .catch( e => {
-                this.$message({ message: "No Heartbeat. Server is not working, please check the Server Logs.", type: 'error' })
+                this.$message({ message: "Sem Heartbeat. O servidor não está funcionando, verifique os Logs do Servidor.", type: 'error' })
             })
         },
 
@@ -234,36 +234,36 @@ export default {
                 if( this.isPS5 )
                     return await this.$ps5.checkPS5()
                         .then( () => {
-                            this.log("PS5 Connection available")
-                            this.$message({ message: "PS5 Connection available", type: 'success' })
+                            this.log("Conexão com o PS5 disponível")
+                            this.$message({ message: "Conexão com o PS5 disponível", type: 'success' })
                         })
                         .catch( e => {
                             console.log(e)
                             this.log(e)
-                            this.$message({ message: "PS5 Connection failed", type: 'error' })                    
+                            this.$message({ message: "Falha na conexão com o PS5", type: 'error' })                    
                         })
                 
 
                 // backwardscompatibility for ps4
                 this.$ps4.checkPS4()
                     .then( (res) => {
-                        this.log("PS4 is accessible", { status: res.status, statusText: res.statusText })
-                        this.$message({ message: "Check Playstation: PS4 is accessible", type: 'success' })
+                        this.log("PS4 está acessível", { status: res.status, statusText: res.statusText })
+                        this.$message({ message: "Verificar Playstation: PS4 está acessível", type: 'success' })
                     })
                     .catch( e => {
-                        this.log("Check Playstation: PS4 is not accessible", e)
-                        this.$message({ message: "PS4 is not accessible.", type: 'error' })
+                        this.log("Verificar Playstation: PS4 não está acessível", e)
+                        this.$message({ message: "PS4 não está acessível.", type: 'error' })
                     })
         },
 
         test(){
             if(this.notify)
-                this.sendNotification({ title: "Test", body: "This test is for Systemwide Notifications" })
+                this.sendNotification({ title: "Teste", body: "Este é um teste para as Notificações do Sistema" })
         },
 
         isInstalled(file){
             if( this.isPS5 )
-                return this.$message({ message: "'Is Installed' feature is not implemented for PS5 yet", type: "info" })                
+                return this.$message({ message: "O recurso 'Verificar se está instalado' ainda não foi implementado para o PS5", type: "info" })                
 
             this.$ps4.isInstalled(file)
                     .then( ({ data }) => {
@@ -319,12 +319,12 @@ export default {
                             // something else, maybe in queue, maybe full storage, maybe whatever
                             this.$message({ 
                                 dangerouslyUseHTMLString: true,
-                                message: `Response Code ${data.res} for <br>${file.name}`, 
+                                message: `Código de Resposta ${data.res} para <br>${file.name}`, 
                                 type: "info" 
                             })
                         }
                         else {
-                            this.$message({ message: `Unknown Response. Please check Logs.`, type: "warning" })                            
+                            this.$message({ message: `Resposta desconhecida. Verifique os Logs.`, type: "warning" })                            
                         }
                     })
                     .catch( e => {
@@ -376,7 +376,7 @@ export default {
 
                         this.setTask(file, data.task_id)
                         this.setStatus(file, 'installing')
-                        this.sendNotification({ title: "Installing", body: file.name + " is installing" })
+                        this.sendNotification({ title: "Instalando", body: file.name + " está instalando" })
                         this.startInterval(file)
                         this.$root.track({ name: 'install.success', data: { name: 'Install Request success', value: file.name } })
 
@@ -548,7 +548,7 @@ export default {
 
         find(file){
             if( this.isPS5 ){
-                this.$message({ message: "'Find file' is not implemented for PS5 yet", type: "info" })
+                this.$message({ message: "'Localizar arquivo' ainda não foi implementado para o PS5", type: "info" })
                 return
             }
 
@@ -606,7 +606,7 @@ export default {
             }
 
             this.setTask(file, '')
-            this.sendNotification({ title: "Finished", body: file.name + " is finished installing" })
+            this.sendNotification({ title: "Concluído", body: file.name + " terminou de instalar" })
             this.$store.dispatch('queue/installed', file)
             this.$root.track({ name: 'installed', data: { name: 'File installed', value: file.name } })
 
@@ -621,10 +621,10 @@ export default {
         },
 
         resetAll(){
-            this.$confirm('This will clear your Queue, Tasks and Installed states.', 'Reset Queue, Tasks and Installed',
+            this.$confirm('Isso vai limpar sua Fila, Tarefas e estados de Instalados.', 'Redefinir Fila, Tarefas e Instalados',
                     {
                     confirmButtonText: 'OK',
-                    cancelButtonText: 'Cancel',
+                    cancelButtonText: 'Cancelar',
                     type: 'warning',
                     center: true,
                     })
@@ -638,7 +638,7 @@ export default {
 
                         this.$message({
                         type: 'success',
-                        message: 'Queue, Tasks and Installed state has been resetted'
+                        message: 'O estado da Fila, Tarefas e Instalados foi redefinido'
                         });
                     })
                     .catch(() => {
@@ -710,7 +710,7 @@ export default {
             if(findNextFile.length == 0)
                 return this.$message({
                     type: 'success',
-                    message: 'There are no items to be installed in the queue'
+                    message: 'Não há itens para instalar na fila'
                 });          
 
             // handle ps5 bulk action
@@ -723,7 +723,7 @@ export default {
                 this.$message({
                     dangerouslyUseHTMLString: true,
                     type: 'success',
-                    message: 'Found next File in the Queue. <br>' + file.name,
+                    message: 'Próximo arquivo encontrado na Fila. <br>' + file.name,
                 });
                 this.$root.track({ name: 'QueueScanner.next', data: { name: 'QueueScanner handle next item in List', value: file.name } })
                 await this.start(file)
@@ -732,18 +732,18 @@ export default {
 
         async handleQueueScannerNextItemPS5(files=[]){
             this.$confirm(
-                `Queue Scanner can currently only Bulk Request` +
-                `all files because there is no Process Handling` +
-                `Response yet to track the progress. <br><br>`+ 
-                `Means the Queue handler will send all files in `+ 
-                `the Queue with the status of 'in queue' ` + 
-                `automatically to the PS5 with a delay in ` + 
-                `between. ${files.length} files to be send.`, 
-                'Bulk Install Request to PS5',
+                `No momento, o Verificador de Fila só consegue fazer` +
+                `Solicitações em Lote de todos os arquivos, pois ainda` +
+                `não há Tratamento de Processo/Resposta para acompanhar o progresso. <br><br>`+
+                `Ou seja, o gerenciador de Fila vai enviar automaticamente `+
+                `todos os arquivos da Fila com status 'na fila' ` +
+                `para o PS5, com um intervalo ` +
+                `entre eles. ${files.length} arquivo(s) a ser(em) enviado(s).`,
+                'Solicitação de Instalação em Lote para o PS5',
             {
                 dangerouslyUseHTMLString: true,
-                confirmButtonText: 'OK, Continue',
-                cancelButtonText: 'Cancel',
+                confirmButtonText: 'OK, Continuar',
+                cancelButtonText: 'Cancelar',
                 type: 'warning',
                 center: true,
             })
@@ -751,14 +751,14 @@ export default {
                 // first check the connection 
                 await this.$ps5.checkPS5()
                     .then( async () => {
-                        this.log("PS5 Connection is ready for Bulk Requests")
-                        this.$message({ message: "PS5 Connection is Ready for Bulk Requests", type: 'success' })
+                        this.log("Conexão com o PS5 pronta para Solicitações em Lote")
+                        this.$message({ message: "Conexão com o PS5 pronta para Solicitações em Lote", type: 'success' })
                         await new Promise( (resolve => setTimeout( () => resolve(), 200)) )
                     })
                     .catch( e => {
                         console.log(e)
                         this.log(e)
-                        this.$message({ message: "PS5 Connection failed. Bulk Request can't proceed.", type: 'error' })                                                
+                        this.$message({ message: "Falha na conexão com o PS5. Não é possível continuar com a Solicitação em Lote.", type: 'error' })                                                
                         throw new Error('PS5 Connection failed')
                     })
 
@@ -767,8 +767,8 @@ export default {
                     dangerouslyUseHTMLString: true,
                     type: 'success',
                     timeout: 3000,
-                    message: `Found ${files.length} files to be send as Bulk Requests to the PS5. <br>`+
-                            `Attention: Files will be send with a delay in between ` 
+                    message: `${files.length} arquivo(s) encontrado(s) para enviar como Solicitações em Lote ao PS5. <br>`+
+                            `Atenção: os arquivos serão enviados com um intervalo entre eles `
                             // + `for <br>` +  `all files that are 'in queue' from the Queue.`
                 })                    
 
@@ -782,10 +782,10 @@ export default {
                     await new Promise(resolve => setTimeout(resolve, 2000))
                 }
 
-                this.$message({ message: "Queue Scanner finished. Check your PS5 download/installation", type: 'success' })
+                this.$message({ message: "Verificador de Fila concluído. Confira o download/instalação no seu PS5", type: 'success' })
 
                 if( this.notify )
-                    this.$root.notify({ title: "Queue Scanner", body: "Bulk Requests finished for " + total + " files."})
+                    this.$root.notify({ title: "Verificador de Fila", body: "Solicitações em Lote concluídas para " + total + " arquivos."})
             })
             .catch(() => {})
         },

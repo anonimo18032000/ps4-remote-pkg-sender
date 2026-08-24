@@ -1,10 +1,10 @@
 <template>
 <div>
-    <h2>Playstation API Logs </h2>
+    <h2>Logs da API do Playstation</h2>
 
     <div class="mb-md">
-        <el-button size="mini" icon="refresh" @click="reset"> Reset Logs </el-button>
-        <el-button size="mini" icon="eye" @click="showData = !showData"> Toggle Data </el-button>
+        <el-button size="mini" icon="refresh" @click="reset"> Limpar Logs </el-button>
+        <el-button size="mini" icon="eye" @click="showData = !showData"> Alternar Dados </el-button>
     </div>
 
     <div v-for="(log,i) in logs" :key="i">

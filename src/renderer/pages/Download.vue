@@ -8,13 +8,13 @@
         <img :src="$root.getImage('assets/rpi.png')" class="icon0" />
     </el-col>
     <el-col :span="12">
-        <b>Remote Package Installer</b> by flatZ <br>
+        <b>Remote Package Installer</b> por flatZ <br>
         <br>
-        The first Remote Package Installer of the scene made by flatZ. <br>
-        It has been build in 2019 and have no latest updates yet. <br>
-        It is known as the legacy default way to install PKG's through Netowrk. <br>
+        O primeiro Remote Package Installer da cena, feito por flatZ. <br>
+        Foi construído em 2019 e ainda não recebeu atualizações recentes. <br>
+        É conhecido como a forma legada e padrão de instalar PKGs pela Rede. <br>
         <br>
-        Any troubles are addressed in the Troubleshooting Guide. <br>
+        Qualquer problema é tratado no Guia de Solução de Problemas. <br>
         <br>
         <el-button @click="$root.open(links.ps4_rpi)"> Download </el-button>
         <el-button @click="$root.open(links.ps4_rpi_github)"> GitHub </el-button>
@@ -28,11 +28,11 @@
         <img :src="$root.getImage('assets/rpioop.png')" class="icon0" />
     </el-col>
     <el-col :span="12">
-        <b>Remote Package Installer [Open Orbis Port]</b> by njzydark <br>
+        <b>Remote Package Installer [Open Orbis Port]</b> por njzydark <br>
         <br>
-        Fork of the RPI OOP by Njzydark with latest updates. <br>
-        Check GitHub repositories to compare the updates. <br>
-        If flatZ RPI doesn't work for you, you should test this one out. <br>
+        Fork do RPI OOP feito por Njzydark, com as atualizações mais recentes. <br>
+        Confira os repositórios no GitHub para comparar as atualizações. <br>
+        Se o RPI do flatZ não funcionar pra você, vale testar esse aqui. <br>
         <br>
         <el-button @click="$root.open(links.ps4_rpioop_njzydark)"> Download </el-button>
         <el-button @click="$root.open(links.ps4_rpioop_github_njzydark)"> GitHub </el-button>
@@ -46,12 +46,12 @@
         <img :src="$root.getImage('assets/rpioop.png')" class="icon0" />
     </el-col>
     <el-col :span="12">
-        <b>Remote Package Installer [Open Orbis Port]</b> by backporter<br>
+        <b>Remote Package Installer [Open Orbis Port]</b> por backporter<br>
         <br>
-        Backporter is working on a new version of the Remote Package Installer <br>
-        porting it from flatZ version to a new one with the Open Orbis SDK. <br>
+        O backporter está trabalhando em uma nova versão do Remote Package Installer <br>
+        portando-o da versão do flatZ para uma nova, com o Open Orbis SDK. <br>
         <br>
-        Below you can find the direct version 1.0 and the GitHub repo. <br>
+        Abaixo você encontra a versão direta 1.0 e o repositório no GitHub. <br>
         <br>
         <el-button @click="$root.open(links.ps4_rpioop)"> Download </el-button>
         <el-button @click="$root.open(links.ps4_rpioop_github)"> GitHub </el-button>
@@ -65,36 +65,36 @@
         <img :src="$root.getImage('assets/hb.png')" class="icon0" />
     </el-col>
     <el-col :span="12">
-        <b>HB-Store R2</b> by LightningMods <br>
+        <b>HB-Store R2</b> por LightningMods <br>
         <br>
-        The official Homebrew App Store build by Darksoftware LLC. <br>
+        A loja oficial de aplicativos Homebrew, construída pela Darksoftware LLC. <br>
         <br>
-        Thanks to LightningMods I am permitted to use the API in the app. <br>
-        This means, you can Download and Install HB-Store Apps directly. <br>
+        Graças ao LightningMods, tenho permissão para usar a API no aplicativo. <br>
+        Isso significa que você pode Baixar e Instalar Apps da HB-Store diretamente. <br>
         <br>
         <el-button @click="$root.open(links.ps4_hbstore)"> Download </el-button>
-        <el-button @click="$root.open(links.pkgzone)" > Visit PKG-Zone.com </el-button>
+        <el-button @click="$root.open(links.pkgzone)" > Visitar PKG-Zone.com </el-button>
     </el-col>
   </el-row>
 
-  <div style="height: 40px" />  
+  <div style="height: 40px" />
 
   <el-row>
     <el-col style="width: 240px;">
         <img :src="$root.getImage('assets/hb-store-cdn-server.jpeg')" class="icon0" />
     </el-col>
     <el-col :span="12">
-        <b>HB-Store CDN Server</b> by Gkiokan <br>
+        <b>HB-Store CDN Server</b> por Gkiokan <br>
         <br>
-        With the CDN Server you can host all your local PKG files with <br>
-        an ease to the HB-Store. It supports name fixing and sub directory scans <br>
-        based on a base Path, and is also cross plattform available.<br>
+        Com o CDN Server você pode hospedar todos os seus arquivos PKG locais com <br>
+        facilidade para a HB-Store. Ele suporta correção de nomes e varredura de subpastas <br>
+        com base em um caminho base, e também funciona em várias plataformas.<br>
         <br>
-        <i style="font-style: italic;">There is also a CLI-Version that is even supported officially by <b>RetroNAS</b>!</i> <br>
+        <i style="font-style: italic;">Também existe uma Versão CLI, que inclusive é suportada oficialmente pelo <b>RetroNAS</b>!</i> <br>
         <br>
         <el-button @click="$root.open(links.hb_store_cdn_server_latest)"> Download </el-button>
         <el-button @click="$root.open(links.hb_store_cdn_server_repo)" > CDN Server </el-button>
-        <el-button @click="$root.open(links.hb_store_cdn_server_cli_repo)" > CDN Server CLI Version </el-button>
+        <el-button @click="$root.open(links.hb_store_cdn_server_cli_repo)" > Versão CLI do CDN Server </el-button>
     </el-col>
   </el-row>
 
@@ -105,10 +105,10 @@
         &nbsp;
     </el-col>
     <el-col :span="12">
-        <b>Your App here?</b> <br>
+        <b>Seu App aqui?</b> <br>
         <br>
-        If you would like to add your Homebrew App to the Downloads Area <br>
-        message me on Discord at <el-tag size="mini">Gkiokan#0735</el-tag> <small style="font-size: 13px">(legacy)</small> or <el-tag size="mini">gkiokan</el-tag><br>
+        Se você quiser adicionar seu App Homebrew à Área de Downloads <br>
+        me manda mensagem no Discord em <el-tag size="mini">Gkiokan#0735</el-tag> <small style="font-size: 13px">(legado)</small> ou <el-tag size="mini">gkiokan</el-tag><br>
 
     </el-col>
   </el-row>

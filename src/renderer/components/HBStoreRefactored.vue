@@ -7,22 +7,22 @@
         <h2 style="margin:0; line-height: 32px;" v-if="false">HB-Store R2 (refactored)</h2>
 
         <el-button-group style="margin-right: auto; margin-left: 10px;">
-            <el-button size="small" :type="isCategory('all')" @click="setCategory('all')"> All </el-button>
-            <el-button size="small" :type="isCategory('media')" @click="setCategory('media')"> Multimedia </el-button>
-            <el-button size="small" :type="isCategory('game')" @click="setCategory('game')"> HB Game </el-button>
-            <el-button size="small" :type="isCategory('utility')" @click="setCategory('utility')"> Utility </el-button>
-            <el-button size="small" :type="isCategory('emulator')" @click="setCategory('emulator')"> Emulator </el-button>
+            <el-button size="small" :type="isCategory('all')" @click="setCategory('all')"> Todos </el-button>
+            <el-button size="small" :type="isCategory('media')" @click="setCategory('media')"> Multimídia </el-button>
+            <el-button size="small" :type="isCategory('game')" @click="setCategory('game')"> Jogo HB </el-button>
+            <el-button size="small" :type="isCategory('utility')" @click="setCategory('utility')"> Utilitário </el-button>
+            <el-button size="small" :type="isCategory('emulator')" @click="setCategory('emulator')"> Emulador </el-button>
         </el-button-group>
     </el-col>
     <el-col :span="8">
         <div style="display: flex; ">
             <el-button-group style="margin-right: 10px; margin-left: auto;">
                 <el-button size="small" :type="isOrder('')" @click="setOrder('')"> A-Z </el-button>
-                <el-button size="small" :type="isOrder('created_at')" @click="setOrder('created_at')"> Latest </el-button>
-                <el-button size="small" :type="isOrder('downloads')" @click="setOrder('downloads')"> Popular </el-button>
+                <el-button size="small" :type="isOrder('created_at')" @click="setOrder('created_at')"> Recentes </el-button>
+                <el-button size="small" :type="isOrder('downloads')" @click="setOrder('downloads')"> Populares </el-button>
             </el-button-group>
 
-            <el-input v-model="search" size="small" placeholder="Search" prefix-icon="fas fa-search" style="width: 200px"/>
+            <el-input v-model="search" size="small" placeholder="Pesquisar" prefix-icon="fas fa-search" style="width: 200px"/>
         </div>
     </el-col>
   </el-row>
@@ -32,17 +32,17 @@
       <el-table :data="packages" class="file">
           <el-table-column type="expand">
               <template slot-scope="scope">
-                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Review Stars: {{ scope.row.data.average_rating }} </el-tag>
-                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Author: {{ scope.row.data.author }} </el-tag>
-                  <el-tag size="small" type="info" style="margin-bottom: 5px" :type="$helper.getAppStoreType(scope.row.data.type)"> Type: {{ scope.row.data.type }} </el-tag>
+                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Estrelas de Avaliação: {{ scope.row.data.average_rating }} </el-tag>
+                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Autor: {{ scope.row.data.author }} </el-tag>
+                  <el-tag size="small" type="info" style="margin-bottom: 5px" :type="$helper.getAppStoreType(scope.row.data.type)"> Tipo: {{ scope.row.data.type }} </el-tag>
                   <el-tag size="small" type="info" style="margin-bottom: 5px"> PV: {{ scope.row.data.pv.join(', ') }} </el-tag>
-                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Release Date: {{ scope.row.data.released_at }} </el-tag>
+                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Data de Lançamento: {{ scope.row.data.released_at }} </el-tag>
                   <br>
 
-                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Name: {{ scope.row.data.name }} </el-tag> <br>
+                  <el-tag size="small" type="info" style="margin-bottom: 5px"> Nome: {{ scope.row.data.name }} </el-tag> <br>
                   <div class="el-tag el-tag--info el-tag--small" style="height: auto; margin-bottom: 5px;">
                       <div style='display: flex;'>
-                          <div style="margin-right: 10px; ">Description: </div>
+                          <div style="margin-right: 10px; ">Descrição: </div>
                           <div>
                               <div v-for="(desc,i) in scope.row.data.description" :key="'desc_' + i">{{ desc }}</div>
                           </div>
@@ -55,42 +55,42 @@
               </template>
           </el-table-column>
 
-          <el-table-column label="Cover" width="100">
+          <el-table-column label="Capa" width="100">
               <template slot-scope="scope">
                   <div class='image' :style="{ backgroundImage: 'url('+scope.row.data.image+')' }" />
               </template>
           </el-table-column>
 
-          <el-table-column prop="name" label="Name">
+          <el-table-column prop="name" label="Nome">
               <template slot-scope="scope">
                   {{ scope.row.name }} <small>(v{{ scope.row.data.version}})</small>
                   <el-tag size="small" :type="$helper.getAppStoreType(scope.row.data.type)" style="margin-left: 10px; margin-bottom: 3px;">{{ scope.row.data.type }}</el-tag>
-                  <el-tag size="small" style="margin-left: 10px; margin-bottom: 3px; cursor: pointer;" v-if="scope.row.data.file_ps5" @click="check(scope.row.data.file_ps5)"> Download PS5 Version </el-tag>
+                  <el-tag size="small" style="margin-left: 10px; margin-bottom: 3px; cursor: pointer;" v-if="scope.row.data.file_ps5" @click="check(scope.row.data.file_ps5)"> Baixar Versão PS5 </el-tag>
                   <br>
                   <el-divider style="margin: 3px 0px" v-if="false" />
                   <div v-for="(desc,i) in scope.row.data.description" :key="'desc_' + i" class="text-darken">{{ desc }}</div>
               </template>
           </el-table-column>
 
-          <el-table-column prop="cusa" label="Title ID" width="110" align="center">
+          <el-table-column prop="cusa" label="ID do Título" width="110" align="center">
               <template slot-scope="scope">
                   <small style="font-size:12px">{{ scope.row.cusa }}</small>
               </template>
           </el-table-column>
 
-          <el-table-column prop="status" label="Type" width="120" align="center">
+          <el-table-column prop="status" label="Tipo" width="120" align="center">
             <template slot-scope="scope">
                 <el-tag size="small" plain :type="$helper.getFileStatus(scope.row.status)">{{ scope.row.status }}</el-tag>
             </template>
           </el-table-column>
 
-          <el-table-column prop="size" label="Size" width="120" align="right">
+          <el-table-column prop="size" label="Tamanho" width="120" align="right">
             <template slot-scope="scope">
                 <el-tag size="small" plain :type="$helper.getFileSizeType(scope.row.size)">{{ scope.row.size }}</el-tag>
             </template>
           </el-table-column>
 
-          <el-table-column label="Operation" width="150" align="right">
+          <el-table-column label="Ações" width="150" align="right">
               <template slot-scope="scope">
                   <el-button circle size="small" icon="fa fa-minus" @click="removeFromQueue(scope.row)" v-if="scope.row.status == 'in queue'" />
                   <el-button circle size="small" icon="el-icon-plus" @click="addToQueue(scope.row)" v-if="scope.row.status != 'in queue'" />
@@ -218,7 +218,7 @@ export default {
                   file.status = 'in queue'
 
                 this.$message({
-                    message: file.name + ' is already in Queue',
+                    message: file.name + ' já está na Fila',
                     type: 'warning'
                 })
             }
@@ -230,7 +230,7 @@ export default {
             }
             else {
                 this.$message({
-                    message: "Can't remove " + file.name + " from queue because it's in another state",
+                    message: "Não é possível remover " + file.name + " da fila porque ela está em outro estado",
                     type: 'warning'
                 })
             }
@@ -238,7 +238,7 @@ export default {
 
         isInstalled(file){
             if( this.$store.getters['app/isPS5'] )
-                return this.$message({ message: "'Is Installed' feature is not implemented for PS5 yet", type: "info" })                
+                return this.$message({ message: "O recurso 'Verificar se está instalado' ainda não foi implementado para o PS5", type: "info" })                
 
             this.$ps4.isInstalled(file)
                     .then( ({ data }) => {

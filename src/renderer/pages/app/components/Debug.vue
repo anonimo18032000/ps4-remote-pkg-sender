@@ -1,18 +1,18 @@
 <template>
 <div>
     <div class="mb-md">
-        {{ serverFiles.length }} files found <br>
-        {{ servingFiles.length }} files serving <br>
+        {{ serverFiles.length }} arquivos encontrados <br>
+        {{ servingFiles.length }} arquivos sendo servidos <br>
     </div>
 
-    Server is <el-tag size="mini" :type="$helper.getServerStatusType(running)" >{{ running }}</el-tag> on {{ ip }}:{{ port }}<br>
+    Servidor está <el-tag size="mini" :type="$helper.getServerStatusType(running)" >{{ running }}</el-tag> em {{ ip }}:{{ port }}<br>
     
     <br>
-    <el-button size="mini" @click="$emit('hearthbeat')"> check hearthbeat </el-button> {{ hb }} <br>
+    <el-button size="mini" @click="$emit('hearthbeat')"> verificar hearthbeat </el-button> {{ hb }} <br>
     <br>
-    <el-button size="mini" @click="startServer">Start Server </el-button>
-    <el-button size="mini" @click="$emit('stopServer')"> Stop Server </el-button>
-    <el-button size="mini" @click="$emit('restartServer')"> Restart Server </el-button>
+    <el-button size="mini" @click="startServer">Iniciar Servidor </el-button>
+    <el-button size="mini" @click="$emit('stopServer')"> Parar Servidor </el-button>
+    <el-button size="mini" @click="$emit('restartServer')"> Reiniciar Servidor </el-button>
 
 </div>
 </template>
@@ -37,7 +37,7 @@ export default {
   methods: {
       startServer(){
           if(this.ip.length == 0 || this.port.length == 0){
-              let error = "Server cannot start. Please configure IP and Port"
+              let error = "O servidor não pode iniciar. Configure o IP e a Porta"
               this.$store.dispatch('server/addLog', error)
               this.$message({ type: 'warning', message: error });
               return

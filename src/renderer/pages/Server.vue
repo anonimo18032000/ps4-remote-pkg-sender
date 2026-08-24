@@ -2,55 +2,55 @@
 <div class="ServerView">
 
     <el-row style="margin-bottom: 20px">
-        <el-button :type="$helper.is(tab == 'server', 'success active', '')" data-umami-event="tab.server" @click="$root.serverTab = 'server'"> Base Files </el-button>
-        <el-button :type="$helper.is(tab == 'dragged', 'success active', '')" data-umami-event="tab.dragged"  @click="$root.serverTab = 'dragged'"> Dragged Files </el-button>
-        <el-button disabled> Upcoming Feature Files from Hosts! </el-button>
+        <el-button :type="$helper.is(tab == 'server', 'success active', '')" data-umami-event="tab.server" @click="$root.serverTab = 'server'"> Arquivos Base </el-button>
+        <el-button :type="$helper.is(tab == 'dragged', 'success active', '')" data-umami-event="tab.dragged"  @click="$root.serverTab = 'dragged'"> Arquivos Arrastados </el-button>
+        <el-button disabled> Recurso futuro: Arquivos de Hosts! </el-button>
     </el-row>
 
     <el-row style="margin-bottom: 20px;">
       <el-col :span="20" style="display: flex">
-            <el-button @click="reload" size="small" icon="el-icon-refresh-left" style="margin-right: 10px; height: 32px;" v-if="tab == 'server'"> Reload </el-button>
+            <el-button @click="reload" size="small" icon="el-icon-refresh-left" style="margin-right: 10px; height: 32px;" v-if="tab == 'server'"> Recarregar </el-button>
 
             <el-form class="base_path_input_form" v-if="$root.serverTab == 'server'">
             <el-form-item style="margin: 0px; width: 100%;">
-                <el-input size="small" placeholder="Select your base path of your PKG's" v-model="server.base_path" disabled>
+                <el-input size="small" placeholder="Selecione o caminho base dos seus PKGs" v-model="server.base_path" disabled>
                     <el-button size="mini" slot="append" icon="el-icon-edit" @click.native="enterManuallyBasePath"> </el-button>
                     <el-button size="mini" slot="append" icon="el-icon-folder" @click.native="selectBasePath"> </el-button>
-                    <el-button size="mini" slot="append" icon="el-icon-plus" @click.native="addAllFilesToQueue"> Add all to Queue </el-button>
+                    <el-button size="mini" slot="append" icon="el-icon-plus" @click.native="addAllFilesToQueue"> Adicionar todos à Fila </el-button>
                 </el-input>
             </el-form-item>            
             </el-form>
 
-            <el-button size="small" icon="el-icon-delete" @click.native="removeFilesFromDragged" v-if="tab == 'dragged'"> Remove all files </el-button>
-            <el-button size="small" icon="el-icon-plus" @click.native="addAllFilesToQueue" v-if="tab == 'dragged'"> Add all to Queue </el-button>
+            <el-button size="small" icon="el-icon-delete" @click.native="removeFilesFromDragged" v-if="tab == 'dragged'"> Remover todos os arquivos </el-button>
+            <el-button size="small" icon="el-icon-plus" @click.native="addAllFilesToQueue" v-if="tab == 'dragged'"> Adicionar todos à Fila </el-button>
       </el-col>
       <el-col :span="4">
-            <el-input v-model="search" size="small" placeholder="Search" prefix-icon="fas fa-search" />
+            <el-input v-model="search" size="small" placeholder="Pesquisar" prefix-icon="fas fa-search" />
       </el-col>
     </el-row>
 
 
     <el-table :data="files" v-loading="loading" class="file"
-        element-loading-text="Loading Server files"
+        element-loading-text="Carregando arquivos do servidor"
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(255, 255, 255, 0.8)"
         style="width: 100%">
         <el-table-column type="expand">
           <template slot-scope="scope">
-              <el-tag size="small" type="info" style="margin-bottom: 3px;"> Path: {{ scope.row.path }} </el-tag> <br>
-              <el-tag size="small" type="info" style="margin-bottom: 3px;"> PKG URL: {{ scope.row.url }} </el-tag> <br>
-              <el-tag size="small" type="info" style="margin-bottom: 3px;"> Icon0 URL: {{ scope.row.image }} </el-tag> <br>
+              <el-tag size="small" type="info" style="margin-bottom: 3px;"> Caminho: {{ scope.row.path }} </el-tag> <br>
+              <el-tag size="small" type="info" style="margin-bottom: 3px;"> URL do PKG: {{ scope.row.url }} </el-tag> <br>
+              <el-tag size="small" type="info" style="margin-bottom: 3px;"> URL do Icon0: {{ scope.row.image }} </el-tag> <br>
               <el-tag size="small" type="info" style="white-space:pre; height: auto; line-height: 1.1;" v-if="debugItemInRow">{{ scope.row }}</el-tag>
           </template>
         </el-table-column>
 
-        <el-table-column label="Cover" width="100" v-if="sfoEnabled">
+        <el-table-column label="Capa" width="100" v-if="sfoEnabled">
             <template slot-scope="scope">
                 <div class='image' :style="{ backgroundImage: 'url('+scope.row.image+')' }" />
             </template>
         </el-table-column>        
 
-        <el-table-column prop="name" label="Name">
+        <el-table-column prop="name" label="Nome">
             <template slot-scope="scope">
                 {{ scope.row.name }} <small v-if="scope.row.sfo?.readSFOHeader">(v{{ scope.row.sfo.APP_VER}})</small>
                 <el-tag size="small" :type="$helper.getAppStoreType(scope.row.sfo.CATEGORY)" style="margin-left: 10px; margin-bottom: 3px;" v-if="scope.row.sfo?.readSFOHeader">{{ scope.row.sfo.CATEGORY }}</el-tag>
@@ -69,7 +69,7 @@
             </template>
         </el-table-column>
 
-        <el-table-column prop="cusa" label="Title ID" width="110" align="center" v-if="showCUSA">
+        <el-table-column prop="cusa" label="ID do Título" width="110" align="center" v-if="showCUSA">
             <template slot-scope="scope">
                 <small style="font-size:12px">{{ scope.row.cusa }}</small>
             </template>
@@ -81,20 +81,20 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="size" label="Size" width="120" align="right">
+        <el-table-column prop="size" label="Tamanho" width="120" align="right">
           <template slot-scope="scope">
               <el-tag size="small" plain :type="$helper.getFileSizeType(scope.row.size)">{{ scope.row.size }}</el-tag>
           </template>
         </el-table-column>
 
-        <el-table-column label="Progress" width="100px" v-if="showPercentage">
+        <el-table-column label="Progresso" width="100px" v-if="showPercentage">
             <template slot-scope="scope">
                 <el-tag size="mini" v-if="0">n/a</el-tag>
                 <el-progress :stroke-width="15" :percentage="scope.row.percentage" :text-inside="true" stroke-linecap="square"></el-progress>
             </template>
         </el-table-column>
 
-        <el-table-column label="Operation" width="100" align="right">
+        <el-table-column label="Ações" width="100" align="right">
             <template slot-scope="scope">
                 <el-button circle size="small" icon="fa fa-minus" @click="removeFromQueue(scope.row)" v-if="scope.row.status == 'in queue'" />
                 <el-button circle size="small" icon="el-icon-plus" @click="addToQueue(scope.row)" v-if="scope.row.status != 'in queue'" />
@@ -182,7 +182,7 @@ export default {
             if(!this.server.base_path){
                 this.$message({
                   type: 'warning',
-                  message: 'No server base path given. Please Configure first.'
+                  message: 'Nenhum caminho base do servidor definido. Configure primeiro.'
                 });
                 return
             }
@@ -226,7 +226,7 @@ export default {
                   file.status = 'in queue'
 
                 this.$message({
-                    message: file.name + ' is already in Queue',
+                    message: file.name + ' já está na Fila',
                     type: 'warning'
                 })
             }
@@ -243,7 +243,7 @@ export default {
             else {
                 if( notify )
                     this.$message({
-                        message: "Can't remove " + file.name + " from queue because it's in another state",
+                        message: "Não é possível remover " + file.name + " da fila porque ela está em outro estado",
                         type: 'warning'
                     })
             }
@@ -257,15 +257,15 @@ export default {
 
             this.$message({
               type: 'success',
-              message: 'All Files has been added to the Queue'
+              message: 'Todos os arquivos foram adicionados à Fila'
             });        
             this.$root.track({ name: 'addAllFilesToQueue', data: { name: 'Add all files to the Queue' } })    
         },
 
         enterManuallyBasePath(){
-            this.$prompt('Please input base path', 'Base Path for the Server', {
+            this.$prompt('Informe o caminho base', 'Caminho Base do Servidor', {
               confirmButtonText: 'OK',
-              cancelButtonText: 'Cancel',
+              cancelButtonText: 'Cancelar',
               // inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
               // inputErrorMessage: 'Invalid Email'
             }).then(({ value }) => {
@@ -273,14 +273,14 @@ export default {
                     this.server.base_path = value
                     this.$message({
                       type: 'success',
-                      message: 'Your base_path has been set to:' + value
+                      message: 'Seu caminho base foi definido como:' + value
                     });
                     this.loadFiles()
                 }
             }).catch(() => {
                 this.$message({
                   type: 'info',
-                  message: 'Input canceled'
+                  message: 'Entrada cancelada'
                 });
             });
         },
@@ -301,7 +301,7 @@ export default {
             
             this.$message({
                 type: 'success',
-              message: 'Files has been reloaded'
+              message: 'Arquivos recarregados'
             });
             this.$root.track({ name: 'reload', data: { name: 'Reload Server files from base Path' } })
         },
@@ -312,7 +312,7 @@ export default {
 
             this.$message({
                 type: 'success',
-              message: 'Not serving Files has been removed'
+              message: 'Arquivos que não estavam sendo servidos foram removidos'
             });            
             this.$root.track({ name: 'removeFilesFromDragged', data: { name: 'Remove all dragged Items' } })
         },
@@ -323,15 +323,15 @@ export default {
             if( fileInQueue ){
                 const h = this.$createElement
                 return this.$msgbox({
-                    title: "Remove File from List",
+                    title: "Remover Arquivo da Lista",
                     message: h('div', null, [
                         h('span', null, " "),
                         h('br', null),
                         h('b', null, file.name),
                         h('br', null),
-                        h('span', null, 'is in the Queue'),
+                        h('span', null, 'está na Fila'),
                         h('br', null),
-                        h('span', null, 'Are you sure to remove the file?')
+                        h('span', null, 'Tem certeza que deseja remover o arquivo?')
                     ]),
                     showCancelButton: true,
                 })

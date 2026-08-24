@@ -5,80 +5,80 @@
       <img :src="$root.getImage('assets/kofi.svg')" class="cursor-pointer" @click="$root.open(links.kofi)" />
     </div>
 
-    <h2>Upcoming User Feature and more in 2.10.x</h2>
-    <el-divider content-position="left" v-if="false"> Upcoming User Feature and more in 2.10.x </el-divider>
+    <h2>Recursos de Usuário e mais por vir na 2.10.x</h2>
+    <el-divider content-position="left" v-if="false"> Recursos de Usuário e mais por vir na 2.10.x </el-divider>
 
-    Hello Ladies and Gentlemen! <br>
+    Olá a todos! <br>
     <br>
-    It has been a long journey so far, and you have done well! <br>
-    With 53k Downloads as of August 2023, that's quite impressive <br>
-    <small style="font-size: 90%">(67k Downloads as of February 2024) </small><br>
-    <small style="font-size: 90%">(79k Downloads as of May 2024) </small><br>
-    Thank you for using the Application. Any Support is appreciated and don't forget to check out my channels. <br>
+    Tem sido uma longa jornada até aqui, e vocês se saíram muito bem! <br>
+    Com 53 mil downloads em agosto de 2023, isso é bem impressionante <br>
+    <small style="font-size: 90%">(67 mil downloads em fevereiro de 2024) </small><br>
+    <small style="font-size: 90%">(79 mil downloads em maio de 2024) </small><br>
+    Obrigado por usar o aplicativo. Qualquer apoio é bem-vindo, e não esqueça de conferir meus canais. <br>
     <br>
-    I will talk about a couple big changes that will come soon or later, depending on your support. <br>
-    This particular update (v2.9.1) has been delayed almost over one year (last update August 2022). <br>
-    I've put a <el-tag size="mini" type="danger" class="cursor-pointer" @click="$root.open('https://ko-fi.com/gkiokan/goal?g=0')" target="_blank">Ko-Fi Goal</el-tag> out there, so anyone who wants to donate are welcome! <br>
-    The faster the Goal hits, the more time I can spend on the updates - choice is yours :) <br>
+    Vou falar sobre algumas mudanças grandes que virão em breve ou mais tarde, dependendo do apoio de vocês. <br>
+    Essa atualização em particular (v2.9.1) foi adiada por quase um ano (última atualização em agosto de 2022). <br>
+    Coloquei uma <el-tag size="mini" type="danger" class="cursor-pointer" @click="$root.open('https://ko-fi.com/gkiokan/goal?g=0')" target="_blank">Meta no Ko-Fi</el-tag>, então quem quiser doar é bem-vindo! <br>
+    Quanto mais rápido a meta for atingida, mais tempo posso dedicar às atualizações - a escolha é sua :) <br>
     <br>
-    Note: This View will became the User Profile Center after the update<br>
-    
+    Nota: Esta tela vai virar a Central de Perfil do Usuário após a atualização<br>
+
     <el-divider />
 
-    <h2 style="font-size: 20px"> What is coming up? </h2>
-    <b>0) PS5 Support </b> [Done]<br>
-    With 2.10.0+ we are the first application that supports PKG Install though application requests. <br>
-    First prototyping works fine, but still we might need more feedback on this to mark it stable. <br>
-    Thanks to etaHEN (@LM) and all the devs who was working on this - huge step forward. <br>
-    
+    <h2 style="font-size: 20px"> O que vem por aí? </h2>
+    <b>0) Suporte a PS5 </b> [Concluído]<br>
+    Com a 2.10.0+ somos o primeiro aplicativo que suporta instalação de PKG através de requisições de aplicativo. <br>
+    A primeira prototipagem funciona bem, mas ainda podemos precisar de mais feedback pra considerar isso estável. <br>
+    Obrigado ao etaHEN (@LM) e a todos os devs que trabalharam nisso - um grande passo adiante. <br>
+
     <div class="space-50" />
 
-    <b>1) Application Serial Numbers </b> [Done] <br>
-    Every Application in version 2.9.0+ will have it's own Serial number now. <br>
-    This will be required for later encryption and decryption of messages and data for the features. <br>
-    
+    <b>1) Números de Série do Aplicativo </b> [Concluído] <br>
+    Todo aplicativo na versão 2.9.0+ agora terá seu próprio número de série. <br>
+    Isso será necessário para futura criptografia e descriptografia de mensagens e dados para os recursos. <br>
+
     <div class="space-50" />
 
-    <b>2) RPSV2 API Service </b> [prepared] <br>
-    With the RPSV2 API Service we will be able to handle dynamic configurations in the future. <br>
-    I've created a first configuration api and will benchmark in version 2.9.1 on how good this goes for <br>
-    all the users. This brings us many benefits like expanding Themes or Languages without the need <br>
-    of new Release Builds, connecting the Chrome Extension or Mobile app (later on, once it's build and deployed). <br>
+    <b>2) Serviço de API RPSV2 </b> [preparado] <br>
+    Com o Serviço de API RPSV2 poderemos lidar com configurações dinâmicas no futuro. <br>
+    Criei uma primeira api de configuração e vou testar na versão 2.9.1 o quão bem isso funciona para <br>
+    todos os usuários. Isso traz muitos benefícios, como expandir Temas ou Idiomas sem precisar <br>
+    de novas versões, conectar a Extensão do Chrome ou o app Mobile (mais adiante, assim que estiverem prontos e publicados). <br>
     <br>
-    This includes also a User Management, to connect all App users together for different purposes. <br>
-    Means you can register and login into your Account and Manage a bunch of stuff out of the App. <br>
-    
-    <div class="space-50" />
-
-    <b>3) Translation </b> [WIP] <br>
-    So long requested and still not here. The reason beeing I wasn't happy about a native implementation <br>
-    of the translation files. But based on the RPSV2 API Service this will be done quite soon. <br>
+    Isso inclui também um Gerenciamento de Usuários, para conectar todos os usuários do App entre si para diferentes propósitos. <br>
+    Ou seja, você poderá se registrar e entrar na sua Conta e gerenciar várias coisas direto pelo App. <br>
 
     <div class="space-50" />
 
-    <b>4) Files from Remote Hosts </b> [planed] <br>
-    This will be really huge. Users can share their PKG files between Users. <br>
-    This feature will be possible because of Point 1 and 2. The RPSV2 API Service will handle all the <br>
-    configuration and communication where as the Serial numbers will act as a handshake encryption <br>
-    between the Users. On Top of all there will be a secure tunnel. Thats at least what is planed. <br>
+    <b>3) Tradução </b> [Em andamento] <br>
+    Tão pedida e ainda não disponível. O motivo é que eu não estava satisfeito com uma implementação nativa <br>
+    dos arquivos de tradução. Mas com base no Serviço de API RPSV2 isso será feito em breve. <br>
+
+    <div class="space-50" />
+
+    <b>4) Arquivos de Hosts Remotos </b> [planejado] <br>
+    Isso vai ser realmente enorme. Usuários poderão compartilhar seus arquivos PKG entre si. <br>
+    Esse recurso será possível graças aos Pontos 1 e 2. O Serviço de API RPSV2 vai cuidar de toda a <br>
+    configuração e comunicação, enquanto os números de série vão atuar como uma criptografia de handshake <br>
+    entre os usuários. Além disso, haverá um túnel seguro. Pelo menos é isso que está planejado. <br>
     <br>
-    Just imagine you create your own PKG Host and share that as a Service to your friends! <br>
-    They wouldn't need to download and install files, they could do it directly over the Service. <br>
+    Imagine só criar seu próprio Host de PKG e compartilhar isso como um Serviço com seus amigos! <br>
+    Eles não precisariam baixar e instalar arquivos, poderiam fazer isso direto pelo Serviço. <br>
 
     <div class="space-50" />
 
-    <b>5) Integrated FTP Client </b> <br>
-    As the name says, the Integrated FTP Client will allow you to navigate directly to your PS4 <br>
-    and allow you to move files arround. This may be interesting for the IPI Installation method <br>
-    or as an alternative to manage files from/to/on the PS4. <br>
-    
+    <b>5) Cliente FTP Integrado </b> <br>
+    Como o nome diz, o Cliente FTP Integrado vai permitir navegar diretamente no seu PS4 <br>
+    e mover arquivos entre pastas. Isso pode ser interessante para o método de instalação IPI <br>
+    ou como alternativa para gerenciar arquivos de/para/no PS4. <br>
+
     <div class="space-50" />
 
-    <b>6) GoldHEN Cheats Manager </b> <br>
-    Not sure who needs that, but it should be pretty simple to build that based on Point 4 and extend <br>
-    the functionality by syncing up with the GoldHEN Cheats Repository on GitHub. Cute enough as a Bonus. <br>
+    <b>6) Gerenciador de Cheats do GoldHEN </b> <br>
+    Não tenho certeza de quem precisa disso, mas deve ser bem simples de construir com base no Ponto 4 e estender <br>
+    a funcionalidade sincronizando com o Repositório de Cheats do GoldHEN no GitHub. Legal o suficiente como bônus. <br>
 
-    <div class="space-30" /> 
+    <div class="space-30" />
 
 
     <el-divider />
@@ -99,14 +99,14 @@
 
       </el-col>
       <el-col :span="16">
-          Thank you for using my <b>Remote Package Sender v2</b>! <br>
+          Obrigado por usar meu <b>Remote Package Sender v2</b>! <br>
           <br>
-          Hope you like it so far what I've build and I would really appreciate any feedback and support. <br>
+          Espero que você esteja gostando do que eu já construí, e eu realmente agradeceria qualquer feedback e apoio. <br>
           <br>
-          If you want to Support me and my development, you can do this on Ko-Fi. <br>
-          That high quality application development is done in my free time and takes much effort. <br>
-          There are so many nice features that are on my todo (black)-list that are not done yet. <br>
-          I'd like to invest more time into this Tool and provide you one of the best Tools ever. <br>
+          Se você quiser me apoiar e apoiar meu desenvolvimento, pode fazer isso no Ko-Fi. <br>
+          Esse desenvolvimento de aplicativo de alta qualidade é feito no meu tempo livre e exige muito esforço. <br>
+          Há tantos recursos legais na minha lista de tarefas que ainda não foram feitos. <br>
+          Eu gostaria de investir mais tempo nessa ferramenta e te oferecer uma das melhores ferramentas de todas. <br>
 
       </el-col>
     </el-row>

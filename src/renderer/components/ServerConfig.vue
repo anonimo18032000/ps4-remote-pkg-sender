@@ -1,32 +1,32 @@
 <template>
 <div id='server_config'>
 
-  <el-divider content-position="left">Local Server Configuration</el-divider>
+  <el-divider content-position="left">Configuração do Servidor Local</el-divider>
 
   <div class="q-pl-md">
   <el-form :inline="true" label-width="150px" size="mini" label-position="left" @submit.native.prevent>
       <el-row :gutter="10">
           <el-col :span="10">
-              <el-form-item label="Server IP">
-                  <el-select v-model="server.ip" placeholder="Networkinterface" default-first-option>
+              <el-form-item label="IP do Servidor">
+                  <el-select v-model="server.ip" placeholder="Interface de Rede" default-first-option>
                       <el-option :label="i.title" :value="i.ip" v-for="i in ifaces" :key="i.ip"></el-option>
                   </el-select>
               </el-form-item>
           </el-col>
           <el-col :span="10">
-              <el-form-item label="Port">
+              <el-form-item label="Porta">
                 <el-input v-model="server.port"></el-input>
               </el-form-item>
           </el-col>
           <el-col :span="4">
-              <el-button size="mini" icon="fa fa-server" style="width: calc(100% - 40px)" @click="$root.openServer()"> Server </el-button>
+              <el-button size="mini" icon="fa fa-server" style="width: calc(100% - 40px)" @click="$root.openServer()"> Servidor </el-button>
           </el-col>
       </el-row>
 
       <el-row :gutter="10">
           <el-col :span="10">
-              <el-form-item label="Server App">
-                  <el-select v-model="server.app" placeholder="Application" default-first-option>
+              <el-form-item label="Aplicativo do Servidor">
+                  <el-select v-model="server.app" placeholder="Aplicativo" default-first-option>
                       <el-option :label="i.title" :value="i.app" :disabled="i.disabled" v-for="i in apps" :key="i.app"></el-option>
                   </el-select>
               </el-form-item>
@@ -43,43 +43,43 @@
       </el-row>
 
 
-      <el-divider content-position="right">Location</el-divider>
+      <el-divider content-position="right">Localização</el-divider>
       <el-row>
           <el-col :span="24">
-              <el-form-item label="PKG Base Path" class="base_path">
-                <el-input placeholder="Select your base path of your PKG's" v-model="server.base_path" disabled>
-                    <el-button slot="append" icon="el-icon-edit" @click.native="enterManuallyBasePath"> Enter manually</el-button>
-                    <el-button slot="append" icon="el-icon-folder" @click.native="selectBasePath"> Click here to Choose the Path</el-button>
+              <el-form-item label="Caminho Base dos PKGs" class="base_path">
+                <el-input placeholder="Selecione o caminho base dos seus PKGs" v-model="server.base_path" disabled>
+                    <el-button slot="append" icon="el-icon-edit" @click.native="enterManuallyBasePath"> Digitar manualmente</el-button>
+                    <el-button slot="append" icon="el-icon-folder" @click.native="selectBasePath"> Clique aqui para escolher o caminho</el-button>
                 </el-input>
               </el-form-item>
           </el-col>
       </el-row>
 
       <div>
-          <el-form-item label="Auto scan">
-              <el-checkbox v-model="server.auto_scan_on_startup" disabled>Auto scan base path on Startup</el-checkbox>
+          <el-form-item label="Varredura automática">
+              <el-checkbox v-model="server.auto_scan_on_startup" disabled>Varrer automaticamente o caminho base ao iniciar</el-checkbox>
           </el-form-item>
       </div>
       <div>
-          <el-form-item label="Deepscan">
-              <el-checkbox v-model="server.scan_subdir">Scan sub directories for pkg files</el-checkbox>
+          <el-form-item label="Varredura profunda">
+              <el-checkbox v-model="server.scan_subdir">Varrer subpastas em busca de arquivos pkg</el-checkbox>
           </el-form-item>
       </div>
 
-      <el-divider content-position="right">Features</el-divider>
+      <el-divider content-position="right">Recursos</el-divider>
       <div>
-          <el-form-item label="URL Prefix">
-              <el-checkbox v-model="server.prependFullPath"> Prefix Serving File URL with full file path, makes each file unique</el-checkbox>
+          <el-form-item label="Prefixo de URL">
+              <el-checkbox v-model="server.prependFullPath"> Prefixar a URL do arquivo servido com o caminho completo, tornando cada arquivo único</el-checkbox>
           </el-form-item>
       </div>
       <div>
-          <el-form-item label="Queue Scanner">
-              <el-checkbox v-model="server.enableQueueScanner"> Enable Queue Scanner to automatically start the next install process on the Queue</el-checkbox>
+          <el-form-item label="Verificador de Fila">
+              <el-checkbox v-model="server.enableQueueScanner"> Ativa o Verificador de Fila para iniciar automaticamente a próxima instalação da Fila</el-checkbox>
           </el-form-item>
       </div>
       <div>
-          <el-form-item label="Read SFO Header">
-              <el-checkbox v-model="server.readSFOHeader" :disabled="ps4.app == 'goldhen'"> Read SFO Header of each PKG and show PKG Information </el-checkbox>
+          <el-form-item label="Ler Cabeçalho SFO">
+              <el-checkbox v-model="server.readSFOHeader" :disabled="ps4.app == 'goldhen'"> Lê o cabeçalho SFO de cada PKG e mostra as informações do PKG </el-checkbox>
           </el-form-item>
       </div>      
 
@@ -176,7 +176,7 @@ export default {
             this.$store.dispatch('server/loadFiles', this.server.base_path)
             this.$message({
                 type: 'success',
-                message: 'Files has been reloaded'
+                message: 'Arquivos recarregados'
             });
         },
 
@@ -186,9 +186,9 @@ export default {
         },
 
         enterManuallyBasePath(){
-            this.$prompt('Please input base path', 'Base Path for the Server', {
+            this.$prompt('Informe o caminho base', 'Caminho Base do Servidor', {
                 confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
+                cancelButtonText: 'Cancelar',
                 // inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
                 // inputErrorMessage: 'Invalid Email'
             }).then(({ value }) => {
@@ -196,13 +196,13 @@ export default {
                     this.server.base_path = value
                     this.$message({
                         type: 'success',
-                        message: 'Your base_path has been set to: ' + value
+                        message: 'Seu caminho base foi definido como: ' + value
                     });
                 }
             }).catch(() => {
                 this.$message({
                     type: 'info',
-                    message: 'Input canceled'
+                    message: 'Entrada cancelada'
                 });
             });
         }
